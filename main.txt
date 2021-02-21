@@ -1,0 +1,73 @@
+#include <cmath>
+#include <string>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+//
+//void swapIt(int *a, int *b)
+//{
+//    int temp = *a;
+//    *a = *b;
+//    *b = temp;
+//}
+
+int main() {
+    int m,n;
+    cin>>m;
+    cin>>n;
+    int size=m*n;
+    int arr[size];
+    for(int i=0;i<size;i++)
+    {
+        cin>>arr[i];
+    }
+    
+    string query;
+    cin>>query;
+    int temp;
+    for(long unsigned int i=0;i<query.length();i++)
+    {
+        switch(query[i])
+        {
+            case 'x':
+                for(int x=0;x<n;x++)
+                {
+                    for(int y=0;y<m/2;y++)
+                    {
+                        temp=arr[n*x+y];
+                        arr[n*x+y]=arr[n*x+(m-1-y)];
+                        arr[n*x+(m-1-y)]=temp;
+                    }
+                }
+                break;
+            case 'y':
+                for(int x=0;x<n;x++)
+            {
+                 for(int y=0;y<m/2;y++)
+                 {
+                      temp=arr[n*x+y];
+                     arr[n*x+y]=arr[n*(n-1-x)+y];
+                       arr[n*(n-1-x)+y]=temp;
+                   }
+                    
+                }
+                break;
+        }
+    }
+    
+    int k=0;
+    for(int i=0;i<size;i++)
+    {
+        cout<<arr[i]<<" ";
+        k++;
+        if(k==m)
+        {
+            cout<<"\n";
+            k=0;
+        }
+    }
+    
+    return 0;
+}
